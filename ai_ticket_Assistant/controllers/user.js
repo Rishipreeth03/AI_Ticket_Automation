@@ -83,3 +83,16 @@ export const updateUser = async(req,res)=>{
     }
 }
 
+export const getUser =async(req,res)=>{
+
+    try{
+        if(!req.user.role!=="admin"){
+            return res.status(403).json({error:"Forbidden"})
+        }
+        const users=await User.find().select("-password");
+        return res.json(users)
+    }catch(error){
+        return res.status(403).json({error:"Update Failed",details:error.message});
+    }
+}
+

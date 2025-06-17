@@ -5,14 +5,15 @@ const ticketSchema = new mongoose.Schema({
     description: String ,
     status:{type:String ,default: "TODO"},
     createdBy:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
-    assignedTo:{type:mongoose.Schema.Types.ObjectId, ref:"User"
-        default: null
+    assignedTo:{type:mongoose.Schema.Types.ObjectId, 
+        ref:"User",
+        default: null,
     },
     priority:String,
     deadline:Date,
     helpfulNotes:String,
-    realtedSkils:[String]
-    createdAt:{type:Date,Date.now},
+    realtedSkils:[String],
+    createdAt:{type:Date,default :Date.now},
 });
 
 export default mongoose.model("Ticket", ticketSchema);
